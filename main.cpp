@@ -10,11 +10,29 @@ using std::string;
 
 class Employee
 {
-public:
+public: // <= Access Modifier (of attributes/methods below until next access modifier)
+
+    // Attributes:
     string Name;
     string Company;
     int Age;
 
+    // Constructors:
+    Employee()
+    { // (default constructor)
+        Name = "DefaultName";
+        Company = "DefaultCompany";
+        Age = 20;
+    }
+
+    Employee(string name, string company, int age)
+    { // (not a default constructor)
+        Name = name;
+        Company = company;
+        Age = age;
+    }
+
+    // Methods:
     void introduceYourself()
     {
         std::cout << "Name: " << Name << std::endl;
@@ -32,13 +50,16 @@ public:
 // **protected* => whatever is public inside the class, is something in between (public and private)
 //           => ... (to be explained)
 
+// Constructor => special type of method that is invoked each time that an object of a class is created
+// - Constructor Method initialises the Attributes of the Class
+// - Constructor Method has No Return Type (doesn't return anything)
+// - Constructor Method has the Same Name as the Class
+
 int main()
 {
-    Employee e1;
-
-    e1.Name = "Artem";
-    e1.Company = "Google";
-    e1.Age = 21;
-
+    Employee e1 = Employee("Artem", "Google", 25);
     e1.introduceYourself();
+
+    Employee e2;
+    e2.introduceYourself();
 }
