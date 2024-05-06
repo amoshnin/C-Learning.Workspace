@@ -9,12 +9,17 @@ using std::string;
 // - Abstraction => Abstraction is like using a TV remote. You don't need to know how the TV works internally; you just press a button, and it does what it's supposed to do.
 //                  Similarly, abstraction allows you to focus on what an object does rather than how it does it.
 //                  It hides the complex implementation details and provides a simplified interface for interacting with objects.
-// - Inheritance =>
-// - Polymorphism =>
 
 // Class that follows Encapsulation (attributes are all private) (getter and setter functions are created)
 
-class Employee {
+// Interface Class (we abstract the complex logic of askForPromotion() as it involves considering many various employee's characteristics)
+// Classes that sign the Interface Class, must provide implementation for askForPromotion() method
+class AbstractEmployee { // <= Abstract Class / Interface Class
+public:
+    virtual void askForPromotion() = 0; // abstract function
+};
+
+class Employee : AbstractEmployee {
 public:
     Employee() {
         Name = "DefaultName";
@@ -32,6 +37,14 @@ public:
         std::cout << "Name: " << Name << std::endl;
         std::cout << "Company: " << Company << std::endl;
         std::cout << "Age: " << Age << std::endl;
+    }
+
+    void askForPromotion() {
+        if (Age > 30) {
+            std::cout << Name << " got promoted!" << std::endl;
+        } else {
+            std::cout << Name << ", sorry, no promotion for you!" << std::endl;
+        }
     }
 
     string getName() {
@@ -84,4 +97,7 @@ int main() {
     std::cout << "Name: " << e2.getName() << std::endl;
     std::cout << "Company: " << e2.getCompany() << std::endl;
     std::cout << "Age: " << e2.getAge() << std::endl;
+
+    e1.askForPromotion();
+    e2.askForPromotion();
 }
